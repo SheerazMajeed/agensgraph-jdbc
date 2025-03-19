@@ -27,7 +27,8 @@ dependencies {
     implementation("com.googlecode.json-simple:json-simple:1.1.1")
 
     testImplementation("junit:junit:4.13.2")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")  // ✅ JUnit 5 for `useJUnitPlatform()`
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")  //
+    testImplementation("org.junit.vintage:junit-vintage-engine:5.8.2")
     testImplementation("org.testcontainers:testcontainers:1.17.6")
 }
 
@@ -140,6 +141,11 @@ nexusPublishing {
             nexusUrl.set(uri("https://oss.sonatype.org/service/local/"))
             snapshotRepositoryUrl.set(uri("https://oss.sonatype.org/content/repositories/snapshots/"))
         }
+    }
+}
+sourceSets {
+    test {
+        java.srcDirs("src/test/java")
     }
 }
 tasks.test {

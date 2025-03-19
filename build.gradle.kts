@@ -28,6 +28,7 @@ dependencies {
 
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")  //
+    testImplementation("org.slf4j:slf4j-simple:1.7.36")
     testImplementation("org.junit.vintage:junit-vintage-engine:5.8.2")
     testImplementation("org.testcontainers:testcontainers:1.17.6")
 }

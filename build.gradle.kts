@@ -27,6 +27,7 @@ dependencies {
     implementation("com.googlecode.json-simple:json-simple:1.1.1")
 
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")  // ✅ JUnit 5 for `useJUnitPlatform()`
     testImplementation("org.testcontainers:testcontainers:1.17.6")
 }
 

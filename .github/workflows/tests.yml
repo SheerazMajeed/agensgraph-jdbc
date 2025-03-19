@@ -35,4 +35,4 @@ jobs:
       - name: Setup gradle and run test
         uses: gradle/gradle-build-action@v2.4.2
         with:
-          arguments: test --info --stacktrace --continue
+          arguments: test --info --stacktrace --continue --console=plain

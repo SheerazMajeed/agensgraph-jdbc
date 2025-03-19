@@ -11,6 +11,7 @@ on:
     paths-ignore:
       - 'README.md'
       - 'VERSION.md'
+  workflow_dispatch:
 
 jobs:
   build:
@@ -34,4 +35,4 @@ jobs:
       - name: Setup gradle and run test
         uses: gradle/gradle-build-action@v2.4.2
         with:
-          arguments: test
+          arguments: test --info --stacktrace --continue

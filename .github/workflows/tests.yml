@@ -36,3 +36,8 @@ jobs:
         uses: gradle/gradle-build-action@v2.4.2
         with:
           arguments: test --info --stacktrace --continue --console=plain
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: build/reports/tests/

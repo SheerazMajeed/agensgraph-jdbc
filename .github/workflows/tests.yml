@@ -16,29 +16,37 @@ on:
 jobs:
   build:
     runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'adopt'
+          java-version: '17'
+      - name: Build Project
+        run: ./gradlew build --info
+
+  test:
+    needs: build # Ensures testing runs only after a successful build
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
-        java: [ '8','11','17', '22' ]
-    name: Java ${{ matrix.Java }}
+        java: [ '8', '11', '17', '22' ]
+    name: Java ${{ matrix.java }}
     steps:
       - uses: actions/checkout@v3
-
-      - name: Setup java
+      - name: Setup Java
         uses: actions/setup-java@v3
         with:
           distribution: 'adopt'
           java-version: ${{ matrix.java }}
-
-      - name: Validate Gradle wrapper
-        uses: gradle/wrapper-validation-action@v1
-        continue-on-error: true
-
-      - name: Setup gradle and run test
-        uses: gradle/gradle-build-action@v2.4.2
+      - name: Run Tests
+        uses: gradle/gradle-build-action@v2
         with:
-          arguments: test --info --stacktrace --continue --console=plain
+          arguments: test --info --stacktrace --continue
       - name: Upload Test Results
         uses: actions/upload-artifact@v4
         with:
-          name: test-results-${{ matrix.java }}
+          name: test-results-java-${{ matrix.java }}
           path: build/reports/tests/

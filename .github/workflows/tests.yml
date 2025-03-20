@@ -40,5 +40,5 @@ jobs:
       - name: Upload Test Results
         uses: actions/upload-artifact@v4
         with:
-          name: test-results
+          name: test-results-${{ matrix.java }}
           path: build/reports/tests/
